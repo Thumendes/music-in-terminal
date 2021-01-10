@@ -1,0 +1,17 @@
+{
+  "name": "music-reader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "bin": {
+    "music": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "inquirer": "^7.3.3",
+    "sound-play": "^1.1.0"
+  }
+}
