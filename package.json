@@ -2,6 +2,8 @@
   "name": "music-reader",
   "version": "1.0.0",
   "main": "index.js",
+  "description": "Command-Line Player to Play Music in Terminal",
+  "repository": "thumendes/music-in-terminal",
   "license": "MIT",
   "bin": {
     "music": "src/index.js"
@@ -12,6 +14,7 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "inquirer": "^7.3.3",
+    "inquirer-autocomplete-prompt": "^1.3.0",
     "sound-play": "^1.1.0"
   }
 }

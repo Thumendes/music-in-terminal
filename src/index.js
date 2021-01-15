@@ -4,19 +4,36 @@ const data = require("./songs.json")
 const chalk = require("chalk")
 
 async function bootstrap() {
+  inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
   async function requestSong() {
     const { artist } = await inquirer.prompt({
       name: "artist",
       message: "Artista: ",
-      type: "list",
-      choices: data.map(value => value.name)
+      type: "autocomplete",
+      source: function (answersSoFar, input) {
+        const artists = data.map(value => value.name)
+        return artists.filter(value => {
+          if (input?.length) {
+            return value.toLowerCase().includes(input.toLowerCase())
+          }
+          return true
+        })
+      }
     })
 
     const { song } = await inquirer.prompt({
       name: "song",
       message: "Música",
-      type: "list",
-      choices: data.find(({ name }) => name === artist).songs.map(song => song.name)
+      type: "autocomplete",
+      source: function (answersSoFar, input) {
+        const songs = data.find(({ name }) => name === artist).songs.map(song => song.name)
+        return songs.filter(value => {
+          if (input?.length) {
+            return value.toLowerCase().includes(input.toLowerCase())
+          }
+          return true
+        })
+      }
     })
 
     return { artist, song }
